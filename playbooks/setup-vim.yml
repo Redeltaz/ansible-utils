@@ -1,0 +1,16 @@
+
+# Install and setup vim basic options
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: Install vim
+        apt:
+          name: ["vim"]
+          state: latest
+
+      - name: Add vimrc file
+        copy:
+          src: ../files/.vimrc
+          dest: /home/dev/
+          mode: 0777

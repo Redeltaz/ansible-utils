@@ -1,0 +1,20 @@
+
+# Install and setup zsh basic options
+---
+  - hosts: all
+    become: yes
+    tasks:
+      - name: Install zsh and git (needed for ohmyzsh)
+        apt:
+          name: ["git", "zsh"]
+          state: latest
+
+      - name: Get Oh My ZSH install script
+        command: curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        register: zshscript
+
+      - name: Launch install script
+        expect:
+          command: "sh -c '{{ zshscript }}'"
+          responses:
+            "Do you want to change your default shell to zsh? [Y/n]" : "Yes"
