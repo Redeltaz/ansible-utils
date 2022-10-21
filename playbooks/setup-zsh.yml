@@ -14,7 +14,7 @@
         register: zshscript
 
       - name: Launch install script
-        expect:
-          command: "sh -c '{{ zshscript }}'"
-          responses:
-            "Do you want to change your default shell to zsh? [Y/n]" : "Yes"
+        command: "sh -c '{{ zshscript }}'"
+        #expect:
+          #responses:
+            #"Do you want to change your default shell to zsh? [Y/n]" : "Yes"
