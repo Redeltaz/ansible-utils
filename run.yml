@@ -1,3 +1,0 @@
----
-  - import_playbooks: ./playbooks/update.yml
-  - import_playbooks: ./playbooks/sertup-vim.yml
