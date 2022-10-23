@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  agent:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+    ports:
+      - 9443:9443

@@ -1,0 +1,29 @@
+---
+- name: Deploy portainer
+  hosts: all
+  become: true
+  vars:
+    path_to_portainer: "/home/dev/portainer"
+
+  tasks:
+    - name: Check if docker installed and working
+      command: systemctl status docker
+      register: docker_status
+
+    - name: debug
+      debug:
+        var: docker_status
+
+    - name: Create portainer folder
+      file:
+        path: "{{ path_to_portainer }}"
+        state: directory
+
+    - name: Add compose file file
+      copy:
+        src: ../files/docker-compose-portainer.yml
+        dest: "{{ path_to_portainer }}/docker-compose.yml"
+        mode: 0777
+
+    - name: Launch portainer
+      command: bash -lc "cd {{ path_to_portainer }} && docker-compose up -d"

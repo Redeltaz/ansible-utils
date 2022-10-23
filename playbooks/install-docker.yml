@@ -37,6 +37,9 @@
         state: latest
         update_cache: true
 
+    - name: Enable docker
+      command: systemctl enable docker
+
     - name: Create docker group
       group: 
         name: "docker"
